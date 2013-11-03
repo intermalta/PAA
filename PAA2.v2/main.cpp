@@ -57,13 +57,42 @@ int main ()
 	std::cout << "Fim da leitura" << std::endl;
 
 
-
+	/*
+	Tarefa 1
 	g.dfs();
 
 	std::vector<ComponentesConexas> componente;
 
 	for(int i = 0; i < (int)g.componentes.size(); i++)
 		std::cout << "componentes = " << g.componentes[i].id << " vertices = " << g.componentes[i].vertices << " arestas = " << g.componentes[i].arestas/2 << std::endl;
+
+	g.clearVisited();
+	*/
+
+	/* Tarefa 2 */
+	std::cout << "rodando a bfs" << std::endl;
+	int idUltimoVertice = g.bfs(g.vertices[0]); //poderia ter usado o map para achar a config 123456780...
+
+	int distancia = g.vertices[idUltimoVertice].distancia;
+
+	std::cout << "distancia = " << distancia << std::endl;
+
+	std::cout << g.vertices[idUltimoVertice].id << std::endl;
+
+	for (int i = 0; i < distancia; i++)
+	{
+		for (int j = 0; j < (int)g.vertices[idUltimoVertice].vizinhos.size(); j++)
+		{
+			
+			//procurando o vertice ancestral na bfs
+			if (g.vertices[g.vertices[idUltimoVertice].vizinhos[j]].distancia == g.vertices[idUltimoVertice].distancia -1)
+			{
+				std::cout << g.vertices[g.vertices[idUltimoVertice].vizinhos[j]].id << std::endl;
+				idUltimoVertice = g.vertices[g.vertices[idUltimoVertice].vizinhos[j]].index;
+				break;
+			}
+		}
+	}
 
 
 	getchar();

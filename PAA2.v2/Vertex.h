@@ -25,6 +25,7 @@ public:
     int index;
 	int posicao;
 	int componentesConexas;
+	int distancia; //para ser usada na bfs
 	std::string id;
     std::vector<int> vizinhos;
 };

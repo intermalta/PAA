@@ -1,6 +1,7 @@
 #include "Graph.h"
 #include <string>
 #include <iostream>
+#include <queue>
 
 
 Graph::~Graph()
@@ -272,3 +273,33 @@ void Graph::troca(char *a, char *b)
 	*b = temp;
 }
 
+int Graph::bfs(Vertex& v)
+{
+	std::queue<int> q;
+	int ind, idUltimoVertice;
+
+	q.push(v.index);
+	v.visitado = true;
+	v.distancia = 0;
+	idUltimoVertice = v.index;
+	
+	while (!q.empty())
+	{
+		ind = q.front();
+		q.pop();
+		for(int j = 0; j < (int)vertices[ind].vizinhos.size(); j++)
+		{
+			if (!vertices[vertices[ind].vizinhos[j]].visitado)
+			{
+				vertices[vertices[ind].vizinhos[j]].visitado = true;
+				q.push(vertices[ind].vizinhos[j]);
+				vertices[vertices[ind].vizinhos[j]].distancia = vertices[ind].distancia + 1;
+				idUltimoVertice = vertices[ind].vizinhos[j];
+
+			}
+		}
+
+	}
+
+	return idUltimoVertice;
+}
