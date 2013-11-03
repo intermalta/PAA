@@ -4,16 +4,8 @@
 #include <string>
 #include <vector>
 
-//enum Status {NOT_VISITED, VISITED};
-const int TAMANHO = 4;
-/*
-pos = linha*2+coluna;
+const int TAMANHO = 9;
 
-a[0] a[1] a[2] a[4]
-a[0][0] a[0][1]
-a[1][0] a[1][1]
-
-*/
 class Vertex
 {
 public:
@@ -23,8 +15,8 @@ public:
 		else
 		{
 			visitado = false;
-			posicao = id.find_first_of("0");
-			//std::cout << "pos do 0 = " << posicao << "id = " << id << std::endl;
+			if (id.size())
+				posicao = id.find_first_of("0");
 		}
 
 	}

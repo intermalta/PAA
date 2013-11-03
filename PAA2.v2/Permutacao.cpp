@@ -19,7 +19,7 @@ void Permutacao::gerarPermutacoes(char data[], int inicio, int tamanho)
 		{
 			troca((data+inicio), (data+j));
 			gerarPermutacoes(data, inicio+1, tamanho);
-			troca((data+inicio), (data+j)); //backtracking
+			troca((data+inicio), (data+j)); //backtrack
 		}
 	}
 }

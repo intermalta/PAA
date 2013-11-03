@@ -24,6 +24,15 @@
     <ClInclude Include="Permutacao.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Writer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentesConexas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graph.cpp">
@@ -33,6 +42,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Permutacao.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Writer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Loader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
