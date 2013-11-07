@@ -4,7 +4,7 @@
 class ComponentesConexas
 {
 public:
-	ComponentesConexas(int id = 1) : vertices(0), arestas(0) {};
+	ComponentesConexas(int id = 1) : id(id), vertices(0), arestas(0) {};
 	int id;
 	int vertices;
 	int arestas;

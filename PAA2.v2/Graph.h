@@ -27,7 +27,8 @@ public:
 	void gerarPermutacoes(char data[], int inicio, int tamanho); 
 	void troca(char *a, char *b);
 	int bfs(Vertex& v);
-	
+	void FindArticulationPointRun(int u, bool visitado[], int pre[], int minimo[], int ancestral[]);
+	void FindArticulationPoint();
 		
 };
 

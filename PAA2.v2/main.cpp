@@ -4,6 +4,34 @@
 #include "Writer.h"
 #include "Loader.h"
 
+
+void geraGraphViz(Graph g)
+{
+	std::ofstream out;
+	out.open("GraphViz.txt", std::ofstream::out); 
+	
+	out << "digraph g{" << std::endl;
+
+	for(int i=0; i < (int)g.vertices.size(); i++)
+	{
+		for(int j=0; j < (int)g.vertices[i].vizinhos.size(); j++)
+		{
+			out << g.vertices[i].id << " -> " << g.vertices[g.vertices[i].vizinhos[j]].id << std::endl;
+		}
+	}
+
+	for(int i=0; i < (int)g.vertices.size(); i++)
+	{
+		out << g.vertices[i].id << " [];" << std::endl;
+	}
+
+	out << "}" << std::endl;
+	out.close();
+
+	std::cout << "Terminou o GraphViz" << std::endl;
+}
+
+
 int main ()
 {
 	/*
@@ -56,9 +84,11 @@ int main ()
 	l.~Loader();
 	std::cout << "Fim da leitura" << std::endl;
 
+	/* Gera arquivo para o GraphViz */
+	//geraGraphViz(g);
 
-	/*
-	Tarefa 1
+
+	/* 	Tarefa 1
 	g.dfs();
 
 	std::vector<ComponentesConexas> componente;
@@ -69,7 +99,7 @@ int main ()
 	g.clearVisited();
 	*/
 
-	/* Tarefa 2 */
+	/* Tarefa 2 
 	std::cout << "rodando a bfs" << std::endl;
 	int idUltimoVertice = g.bfs(g.vertices[0]); //poderia ter usado o map para achar a config 123456780...
 
@@ -93,8 +123,11 @@ int main ()
 			}
 		}
 	}
+	*/
 
-
+	/* Tarefa 3 */
+	g.FindArticulationPoint();
+	system("pause");
 	getchar();
 	return 0;
 }

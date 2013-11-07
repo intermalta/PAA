@@ -219,7 +219,7 @@ void Graph::dfs()
 */
 void Graph::dfsVisit(int v)
 {
-	std::cout << v << std::endl;
+//	std::cout << v << std::endl;
 	vertices[v].visitado = true;
 	vertices[v].componentesConexas = componentes.size();
 	componentes[componentes.size() - 1].vertices++;
@@ -302,4 +302,60 @@ int Graph::bfs(Vertex& v)
 	}
 
 	return idUltimoVertice;
+}
+
+void Graph::FindArticulationPointRun(int u, bool visitado[], int pre[], int minimo[], int ancestral[])
+{
+	static int tempo = 0;
+
+	//armazeno a quantidade de filhos que um vertice v tem na DFS
+	int filhos = 0;
+	int v;
+
+	visitado[u] = true;
+
+	pre[u] = minimo[u] = ++tempo;
+
+	for ( int i = 0; i < (int)vertices[u].vizinhos.size(); i++ )
+	{
+		v = vertices[u].vizinhos[i];
+		if(!visitado[v])
+		{
+			filhos++;
+			ancestral[v] = u;
+			FindArticulationPointRun(v, visitado, pre, minimo, ancestral);
+
+			minimo[u] = (minimo[u] < minimo[v]) ? minimo[u] : minimo[v];
+			
+			//vertice eh raiz e tem mais de um filho entao tem um ponto de articulacao
+			if (ancestral[u] == -1 && filhos > 1)
+				std::cout << "ponto de articulacao(raiz): " << vertices[v].id << std::endl;
+
+			//se u nao eh raiz e o valor minimo de um de seus filhos eh maior que a descoberta do valor u 
+			if (ancestral[u] == -1 && minimo[v] >= pre[u])
+				std::cout << "ponto de articulacao: " << vertices[v].id << std::endl;
+		}
+		else if ( v != ancestral[u] )
+			minimo[u] = (minimo[u] < pre[v]) ? minimo[u] : pre[v];
+	}
+
+}
+
+void Graph::FindArticulationPoint()
+{
+	bool *visitado = new bool[vertices.size()];
+	int *pre = new int[vertices.size()];
+	int *minimo = new int[vertices.size()];
+	int *ancestral = new int[vertices.size()];
+
+	for (int i = 0; i < (int)vertices.size(); i++)
+	{
+		ancestral[i] = -1;
+		visitado[i] = false;
+	}
+
+	for (int i = 0; i < (int)vertices.size(); i++)
+		if (visitado[i] == false)
+			FindArticulationPointRun(i, visitado, pre, minimo, ancestral);
+		
 }
